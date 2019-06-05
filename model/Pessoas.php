@@ -1,6 +1,8 @@
 <?php
+// tudo que eu tiver de classe que eu precisar estanciar no meu objeto fica dentro do model;
+// é uma classe que está sendo criada a partir de outra;
+// metodos contrutores ao inves de eu criar um objeto vazio eu ja crio ele com dados exemplo usuarios.php
 require_once"model/conexao.php";
-global $con;
 class Pessoas{
     //public todo mundo acessa a classe;
     // private ninguem acessa;
@@ -8,7 +10,12 @@ class Pessoas{
     private $nome;
     private $idade;
     private $cpf;
-
+    function __construct($nome, $idade, $cpf){
+$this->nome = $nome;
+$this->idade = $idade;
+$this->cpf = $cpf;
+    }
+// metodos acessores são funçoes com visibilade publica
     public function getNome(){
         return $this->nome;
     }
@@ -33,8 +40,19 @@ class Pessoas{
         $this->cpf = $cpf;
         // this pega o nome e atribui ao parametro nome; 
     }
-    public function cadastrarPessoa($con){
-        $this->nome;
+    public function cadastrarPessoa($con,$pessoa){
+        try{
+            $query = $con->prepare("INSERT INTO usuarios(nome, idade, cpf) VALUES(?,?,?)");
+            $query->execute([
+                $pessoa->getNome(),
+                $pessoa->getIdade(),
+                $pessoa->getCpf()
+            ]);
+            return $query;
+            //PDOExcepition está pegando os recurssos das excessoes do pdo ou seja as que deram erro
+        }catch(PDOExcepition $e ){
+            return false;
+        }
     }
     
     

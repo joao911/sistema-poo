@@ -1,5 +1,5 @@
 <?php
-$host = "mysql:host=localhost;dbname=defafiophp;charset=utf8mb4;port=8889";
+$host = "mysql:host=localhost;dbname=sistemapoo;charset=utf8mb4;port=8889";
 $dbuser = "root";
 $dbPass ="";
 
@@ -18,7 +18,7 @@ $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 }catch(PDOException $e){
 
-echo "erestamos em manutenção , volte novamente mais tarde";
+echo "estamos em manutenção , volte novamente mais tarde";
 
- echo $e->getMenssage(); // enviar menssagem
+ echo $e->getMessage(); // enviar menssagem
 }
