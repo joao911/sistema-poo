@@ -2,7 +2,7 @@
 // tudo que eu tiver de classe que eu precisar estanciar no meu objeto fica dentro do model;
 // é uma classe que está sendo criada a partir de outra;
 // metodos contrutores ao inves de eu criar um objeto vazio eu ja crio ele com dados exemplo usuarios.php
-require_once"model/conexao.php";
+
 class Pessoas{
     //public todo mundo acessa a classe;
     // private ninguem acessa;
@@ -40,7 +40,7 @@ $this->cpf = $cpf;
         $this->cpf = $cpf;
         // this pega o nome e atribui ao parametro nome; 
     }
-    public function cadastrarPessoa($con,$pessoa){
+    public function cadastrarPessoa($con,$pessoa,$tipoPessoa){
         try{
             $query = $con->prepare("INSERT INTO usuarios(nome, idade, cpf) VALUES(?,?,?)");
             $query->execute([
